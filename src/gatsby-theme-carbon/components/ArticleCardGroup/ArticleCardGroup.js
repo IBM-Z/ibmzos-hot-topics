@@ -29,9 +29,9 @@ return (
   <Row>
     {data.allMdx.nodes.slice(0, 1).map((node, index) => {
       const article = node.frontmatter;
-      let featuredImgsrc = images(`./getting-better-network-performance-for-your-zcx-containers-featured.jpg`);
-      //let imgtitle = article.title.replace(/\s+/g, '-').replace(/\//g, '').toLowerCase();
-      //let featuredImgsrc = images(`./`+ imgtitle +`-featured.jpg`);
+      //let featuredImgsrc = images(`./getting-better-network-performance-for-your-zcx-containers-featured.jpg`);
+      let imgtitle = article.title.replace(/\s+/g, '-').replace(/\//g, '').toLowerCase();
+      let featuredImgsrc = images(`./`+ imgtitle +`-featured.jpg`);
 
       return (
         <Column colMd={12} colLg={12} noGutterMdLeft>
@@ -56,10 +56,10 @@ return (
   <Row>
   {data.allMdx.nodes.slice(1, 10).map((node, index) => {
     const article = node.frontmatter;
-    let imgsrc = images(`./gallery.jpg`);
+    //let imgsrc = images(`./gallery.jpg`);
     const defaultImg = images(`./gallery.jpg`);
-       // let imgtitle = article.title.replace(/\s+/g, '-').replace(/\/|\?|'|\(|\)/g, '').toLowerCase();
-       // let imgsrc = images(`./`+ imgtitle +`.jpg`);
+       let imgtitle = article.title.replace(/\s+/g, '-').replace(/\/|\?|'|\(|\)/g, '').toLowerCase();
+       let imgsrc = images(`./`+ imgtitle +`.jpg`);
     return (
       <Column colMd={4} colLg={4} noGutterMdLeft>
         <ArticleCard
