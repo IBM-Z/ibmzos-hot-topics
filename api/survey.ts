@@ -6,9 +6,8 @@ import { WebClient } from '@slack/web-api';
 require('dotenv').config();
 
 const permittedOrigins = [
-  'https://hottopics.gatsbyjs.io/',
+  'https://zoshottopics.gatsbyjs.io/',
   'https://w3.ibm.com',
-  'http://localhost:8000',
 ];
 
 module.exports = async (req: NowRequest, res: NowResponse) => {
