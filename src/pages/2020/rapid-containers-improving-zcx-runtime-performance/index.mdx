@@ -1,0 +1,132 @@
+---
+title: Rapid Containers - Improving zCX Runtime Performance
+description: To improve zCX performance, IBM made multiple enhancements both to the virtualization and networking code that manages the Linux guest.
+author: Anthony Giorgio, Nick Matsakis
+date: 2020-09-28
+readTime: 5 minutes
+---
+
+IBM z/OS® Container Extensions (IBM zCX) makes it possible to integrate Linux® on IBM Z® software applications 
+as Docker Containers within z/OS without requiring a separate Linux server. Application developers can develop 
+and data centers can operate popular open-source packages, Linux applications, IBM software and third-party 
+software together with z/OS applications and data. The ability to colocate the Linux and z/OS parts of a workload 
+improves operational control, leverages z/OS Qualities of Service, and typically improves performance. This is 
+because data can more easily be moved between the zCX address space hosting Linux and the address spaces hosting 
+the z/OS parts.
+
+In order to improve performance of the zCX address space and the Linux applications running inside, 
+IBM has made multiple enhancements both to the virtualization and networking code that manages the Linux guest. 
+The improvements listed in this article address a variety of performance considerations, and should be applied to 
+any z/OS system running zCX. 
+
+## High Value zCX Performance Enhancements
+
+**Reducing zCX processing contention and switching between GCPs and zIIPs**
+
+By reducing the switching between zIIPs and General Purpose processors (GCP), APAR OA58296 provides significant 
+scaling and zIIP eligibility improvements. As zIIP processors always run at full speed even on sub-capacity machines 
+and do not incur software pricing penalties, reducing the time spent on GCPs reduces the total cost of ownership. 
+In general, about 95% of the processing done in a zCX appliance will run on a zIIP processor. OA58296 also reduces 
+contention during virtual CPU and VSAM I/O completion processing. All of these improvements result in much smoother 
+scaling and the ability to reach higher transaction rates. OA58296 is recommended to be applied by all customers.
+
+**Allowing Linux to use vector instructions**
+
+The IBM Z z13®, z14®, and z15™ processors support Single Instruction Multiple Data (SIMD) instructions, 
+also known as vector instructions. However, it was not until APAR OA59111 that zCX provided vector instruction 
+support to the Linux guest. Vector instructions can dramatically improve the performance of applications that take 
+advantage of them. Applying OA59111 allows Linux applications that utilize these instructions to run in the zCX guest.
+
+**Speeding up zCX network communications**
+
+The ability to move data in and out of a server is a key performance metric. z/OS Communications Server APARs PH16581 and 
+OA58300 make significant improvements in that area. Their support allows inbound traffic via Workload Queueing (IWQ) when 
+using OSA-Express in QDIO mode. This improves performance and ensures that processing used to manage the traffic will run 
+on zIIP processors to reduce software pricing charges. IWQ is recommended for all zCX users. These APARs also improve the 
+blocking/batching of work elements to improve the processing of zCX traffic.
+
+For more information, see the paper [V2R4: Z/OS COMMUNICATIONS SERVER PERFORMANCE SUMMARY REPORT](https://www.ibm.com/support/pages/sites/default/files/inline-files/zOS%20V2R4%20Communications%20Server%20Performance%20Summary%20Report.pdf). 
+It provides details on various IBM measurements performed by the Communications Server team with these APARs applied.
+
+**Increasing the hardware page frame size to 2G or 1M**
+
+By increasing the hardware page frame size that zCX uses to back the Linux guest storage from 4K to either 2G or 1M, 
+APAR OA59573 reduces both zIIP and GCP processing time for the same workload at the same transaction rate. Prior to this 
+support, zCX could only use 4K fixed pages for the Linux guest memory. Using larger page sizes reduces the number of hardware 
+pages that are required, which improves zCX startup and container run-time performance. 2G pages provide the best performance 
+and are recommended for all production environments. However, there are cases where 1M pages are a good choice as well.
+
+As each real storage page requires only one hardware Translation Look-aside Buffer (TLB) entry, larger memory pages can 
+significantly increase the number of TLB hits and thus reduce Dynamic Address Translation (DAT) table lookup processing 
+time that the hardware would otherwise have to do. For example, 4GB of Linux guest storage backed by 4K pages consumes 
+1,048,576 pages. In contrast, if it was backed by 2G pages, it would only require two pages, and would require significantly less DAT table entries.  
+
+**z/OS storage pools**
+
+In order to choose a page size and memory capacity plan for the zCX instances, you need to understand how z/OS manages memory 
+and how your choices are related to it. Real memory as of z/OS V2R3 is divided into three different pools:
+
+1. 2G fixed
+2. 1M and 4K preferred
+3. 1M and 4K non-preferred
+
+The size of the 2G fixed pool is defined at IPL time via the IEASYSxx 2G LFAREA value and cannot be changed after IPL. 
+The remaining memory is divided between the preferred and non-preferred 1M and 4K pools. Within those pools, 1M fixed, 
+1M pageable and 4K pageable pages can initially be allocated by software. Both 1M pageable and 4K pageable pages can subsequently 
+be fixed. How much is in the non-preferred pool is determined by the IEASYSxx Reconfigurable Storage Units (RSU) value, which can 
+be changed dynamically after IPL. The remaining memory determines the size of the preferred 1M and 4K storage pool.
+
+The IEASYSxx 1M LFAREA value defines the maximum number of 1M fixed pages that can be used across both the 1M and 
+4K preferred and non-preferred pools. Note that prior to z/OS V2R3, the 1M LFAREA defined a pre-allocated pool like 2G pages. 
+1M pages are built dynamically and are no longer pre-allocated at IPL. Regardless of zCX planning, changes to the LFAREA values 
+requires an IPL, so consider increasing the 1M value on your next planned IPL. Note that the 1M setting is only a maximum value. 
+Be aware that more 1M fixed usage may appear by address spaces that were previously forced to use 4K fixed pages.
+
+Preferred storage is used to back storage from non-swappable address spaces and for long-term page fixes (as defined by the page fixer). 
+zCX falls into both of those categories. By definition, fixed storage cannot be taken away by either paging or backing it with another available frame. 
+This is because it may be referenced directly by I/O processing that is not coordinated with z/OS Real Storage Manager (RSM). 
+Using non-preferred storage, also known as reconfigurable storage, for such cases would not make sense as that storage must be 
+able to be reconfigured offline. This could be done for various purposes, such as dynamically moving the storage to another LPAR. 
+As memory has become cheaper and LPAR memory sizes have dramatically increased, the need to move memory around on production LPARs 
+is uncommon. Most customers do not need to have much (or any) non-preferred storage defined.
+
+The DISPLAY M=STOR command can be used to display the reconfigurable and non-reconfigurable (preferred storage) values for the system. 
+The F AXR,IAXDMEM command can be used to display the LFAREA defined total sizes, the in-use allocation, and max in-use allocation for 1M 
+fixed and 2G pages (see Figure 1).
+
+[Figure 1. z/OS Real Memory Pools ](images/image1.png "Figure 1. z/OS Real Memory Pools ")
+
+## Choosing a zCX Page Size
+
+Determining the optimal page size for a zCX instance requires planning and consideration. The best performance comes 
+from utilizing a 2G page size, while a 1M size offers good performance. A 4K page size provides the worst performance, especially when running under z/VM.
+
+As the zCX address space is non-swappable and guest storage is fixed for the long term, the real storage used for the guest is not reconfigurable. 
+Thus, using a 1M or 4K page size results in the storage coming from the preferred storage pool. Each zCX instance can be configured with a list of 
+one or more allowable page sizes. Any combination of 2G, 1M and 4K sizes can be used.
+
+When starting, zCX chooses the page size using a largest size “first-fit” strategy based on the list of chosen sizes for that instance. 
+zCX starts with the largest page size, and then chooses smaller sizes in turn until successful. If none of the page sizes can fit the desired 
+memory size, zCX will terminate with an error message. Choosing multiple page sizes will allow for an instance to start even in the case that 
+the desired page size is unavailable. This can increase availability at the cost of application performance. Always adding 4K to the size list is a good high-availability choice.
+
+zCX appliances provisioned before applying OA59573 will continue to use 4K pages. When starting those appliances, message GLZB026I reminds you 
+to reconfigure them so the ideal size is used. 
+ 
+How to choose:
+
+1. Always use 2G for production workloads
+2. Use 1M when the storage needs to be reused by workloads that do not support 2G pages when the zCX appliance is not running
+3. A re-IPL will be required if LFAREA values need to be increased. Until then, 1M or 4K can be used
+4. Consider both in-place and cross-system restarts
+5. Consider adding 4K to the list for highest availability
+6. Always use 1M pages when z/OS is a z/VM guest, as 2G is not supported and 1M provides significant performance improvements
+
+If you’re running zCX on your z/OS systems, you should apply the previously mentioned APARs. In addition, 
+it’s worth spending time reviewing your z/OS and zCX memory allocation settings for improved container performance.
+
+## About the author
+
+Anthony Giorgio // Advisory software engineer // IBM z/OS Container Extensions
+
+Nick Matsakis is a z/OS Core Technologies developer with 36 years experience.

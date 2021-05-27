@@ -1,0 +1,95 @@
+// This is where your application styles could go.
+@import "~carbon-components/scss/globals/scss/layout";
+
+@media (min-width: 82rem) {
+.bx--col-xl-4 {
+    display: block;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+}
+[class*="article-card__title"] {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    padding-bottom:0;
+}
+//Remove switcher icon from view in main nav header
+[class*="switcher-button"] {
+    display: none !important;
+  }
+//Extend list elements to full-width in markdown pages
+[class*="Markdown-module--list"] {
+  width: 100%;
+}
+//Aside module in Default template
+[class*="Aside-module"] {
+  img {
+    margin-top: $spacing-02;
+    margin-bottom: $spacing-04;
+  }
+  p {
+    margin-bottom: $spacing-04;
+  }
+}
+//Increase right padding and prevent three-line titles in NextPrevious modules
+[class*="NextPrevious-module--link"] {
+  a {
+    padding: 1rem 4rem 1rem 1rem;
+  }
+}
+[class*="NextPrevious-module--name"] {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding-bottom:0;
+  }
+
+//footer paragraph
+[class*="footer"] {
+  p {
+    &:first-of-type {
+    font-size:1rem;
+  }
+}
+}
+
+//Formatting for Download as PDF/print dialog  
+@media print {
+  a {
+    color: #000000;
+  }
+  .bx--header {
+    display: none;
+  }
+
+  [class*="page-header"] {
+    color: #000000 !important;
+    height: auto !important;
+    --height: auto !important;
+  }
+  [class*="article-title"] {
+    color: #000000;
+  }
+  [class*="NextPrevious"] {
+    display: none;
+  }
+  [class*="Footer"] {
+    display: none;
+  }
+  [class*="MiniCard"] {
+    display: none;
+  }
+  [class*="Aside"] {
+    display: block;
+    margin-top: 48px;
+    width: 200px;
+    a {
+      display: none;
+    }
+  }
+}

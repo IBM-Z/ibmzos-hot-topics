@@ -1,0 +1,31 @@
+- title: About
+  pages:
+    - title: Welcome to Hot Topics
+      path: /about
+- title: 2021 Hot Topics
+  pages:
+    - title: Getting Better Network Performance for your zCX Containers
+      path: /2021/getting-better-performance-zCX-containers/
+- title: 2020 Hot Topics
+  pages:
+    - title: Managing zFS File Systems With the BPXWMIGF Migration Command
+      path: /2020/managing-zfs-file-systems-bpxwmigf-migration-command/
+    - title: z/OSMF Software Update Lets You Skip SMP/E Drudgery
+      path: /2020/zosmf-software-update-lets-you-skip-smpe-drudgery/
+    - title: Run Linux on IBM Z Docker Containers Inside z/OS
+      path: /2020/run-linux-ibmz-docker-containers/
+    - title: What's new in z/OSMF?
+      path: /2020/whats-new-in-zosmf/
+    - title: Shared Memory Communications Unleashed - Multiple IP Subnet Support
+      path: /2020/shared-memory-communications-unleashed/
+    - title: Rapid Containers - Improving zCX Runtime Performance
+      path: /2020/rapid-containers-improving-zcx-runtime-performance/
+    - title: OAM Supports Object Data in the Cloud
+      path: /2020/oam-supports-object-data-in-the-cloud/
+    - title: ServerPac Installation Using IBM z/OS Management Facility Streamlines Software Management
+      path: /2020/serverpac-installation-using-ibmzosmf-streamlines-software-mgmt/
+    - title: Enterprise COBOL for z/OS (COBOL) Migration Portal
+      path: /2020/enterprise-cobol-migration-panel/
+    - title: Try z/OS Container Extensions With the New 90-Day Trial
+      path: /2020/zcx-trial/
+  hasDivider: true
