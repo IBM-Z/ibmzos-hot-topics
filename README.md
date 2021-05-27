@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Gatsby Theme Carbon Starter
 
 ## What is this?
@@ -29,3 +30,6 @@ You’re also free to make your own components and use them in your MDX pages.
 ## What’s Next?
 
 [Check out the docs!](https://gatsby-theme-carbon.now.sh)
+=======
+# zos-hot-topics
+>>>>>>> c93100cd18eb40bf3215e1b6db027c1f9ca2f8ff
