@@ -15,7 +15,6 @@
     "@now/node": "^1.8.5",
     "@slack/web-api": "^6.2.3",
     "gatsby": "^2.24.14",
-    "gatsby-plugin-feed": "^3.6.0",
     "gatsby-theme-carbon": "^1.27.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
