@@ -1,0 +1,14 @@
+@import '~carbon-components/scss/globals/scss/layout';
+
+.bylineText {
+  @include carbon--type-style('body-short-01', true);
+  margin-top:0;
+  margin-bottom: $spacing-02;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-bottom: 1px solid #dfdddf;
+    margin-top: 1.5rem;
+}
