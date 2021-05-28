@@ -6,6 +6,8 @@ function onSubmit(data) {
     return fetch(process.env.BACKEND_URI, {
       method: 'POST',
       body: JSON.stringify(data),
+      credentials: 'include',
+      mode: 'no-cors',
     });
   }
 }
