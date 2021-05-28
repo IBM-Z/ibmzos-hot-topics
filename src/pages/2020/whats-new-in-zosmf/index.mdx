@@ -2,7 +2,7 @@
 title: What's new in z/OSMF? 
 description: A new UI for enabling z/OSMF services also helps you shorten the server start-up time
 author: Zhi Li, Wayne O'Brien
-date: 2020-11-09
+date: 2020-11-09T00:00:00.000+06:00
 readTime: 5 minutes
 ---
 
@@ -41,15 +41,15 @@ What happens if you change your mind later? No worries, you can always add those
 
 Let’s take a closer look at the new Services tab. On a system with APAR PH24527 installed, log in to the z/OSMF desktop and click the General Settings icon.
 
-![Figure 1: Start at the General Settings icon on the z/OSMF desktop.](images/image1.png "Figure 1: Start at the General Settings icon on the z/OSMF desktop.")
+![Figure 1: Start at the General Settings icon on the z/OSMF desktop.](images/image1.jpg "Figure 1: Start at the General Settings icon on the z/OSMF desktop.")
 
 Then, click the “Services” Tab to display the z/OSMF services. Here, you can review the complete set of z/OSMF services and determine whether any can be enabled or disabled.
 
-![Figure 2: In General Settings is where you’ll find the new Services tab.](images/image2.png "Figure 2: In General Settings is where you’ll find the new Services tab.")
+![Figure 2: In General Settings is where you’ll find the new Services tab.](images/image2.jpg "Figure 2: In General Settings is where you’ll find the new Services tab.")
 
 z/OSMF currently includes 14 core services and nine optional services. To select or deselect a service, click the associated toggle.
 
-![Figure 3: You can enable or disable z/OSMF services with a mouse click.](images/image3.png "Figure 3: You can enable or disable z/OSMF services with a mouse click.")
+![Figure 3: You can enable or disable z/OSMF services with a mouse click.](images/image3.jpg "Figure 3: You can enable or disable z/OSMF services with a mouse click.")
 
 As you make selections, the Service tab identifies interdependencies between z/OSMF functions to help you avoid disabling something you shouldn’t. 
 Some z/OSMF services prerequisite other services, so you might find that you need to configure a few more services than the ones you planned to use.
@@ -57,7 +57,7 @@ Some z/OSMF services prerequisite other services, so you might find that you nee
 For example, if you choose to disable the z/OS jobs REST APIs when z/OSMF workflows are enabled, the Services tab warns you that the Workflows task 
 might be adversely affected if you continue. That’s good to know!
 
-![Figure 4: z/OSMF warns you if you’re about to disable something that’s needed by another service.](images/image4.png "Figure 4: z/OSMF warns you if you’re about to disable something that’s needed by another service.")
+![Figure 4: z/OSMF warns you if you’re about to disable something that’s needed by another service.](images/image4.jpg "Figure 4: z/OSMF warns you if you’re about to disable something that’s needed by another service.")
 
 ## A Closer Look at z/OSMF Resource Consumption
 
@@ -69,7 +69,7 @@ You can disable the help on the Settings page.
 
 In internal tests, we found that the z/OSMF help uses about 50% of the CPU-time for z/OSMF core services. 
 For performance-critical systems and secondary servers that are intended to handle specialized workloads (REST APIs), 
-disabling the z/OSMF help can significantly improve the z/OSMF server startup time. Note that the full set of z/OSMF help content is available in the [z/OS Knowledge Center](https://www.ibm.com/docs/en/zos/2.4.0?topic=facility-zos-management-online-help).
+disabling the z/OSMF help can significantly improve the z/OSMF server startup time. Note that the full set of z/OSMF help content is available in [IBM Documentation](https://www.ibm.com/docs/en/zos/2.4.0?topic=facility-zos-management-online-help).
 
 For comparisons of z/OSMF server startup performance, see the lab results below. 
 This test was performed on a z/OSMF system with a dedicated CP with 8G of memory, Java 8 SR5, and WebSphere® Liberty version 20.0.0.3.
