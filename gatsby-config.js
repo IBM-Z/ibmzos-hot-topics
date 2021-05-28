@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl:"https://zoshottopics.gtsb.io/",
+    siteUrl: "https://zoshottopics.gtsb.io/",
     title: "z/OS Hot Topics",
     description:
       "Hot Topics content connects you with System z technical leaders and experts who design, code, test, document, teach, and support z/OS and its products.",
@@ -36,7 +36,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-feed-mdx',
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
       {
