@@ -14,7 +14,7 @@ export default function ArticleCardGroup({ limit, featured }) {
         nodes {
           frontmatter {
             author
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "MMMM Do, YYYY")
             description
             readTime
             title
@@ -61,7 +61,7 @@ return (
        let imgtitle = article.title.replace(/\s+/g, '-').replace(/\/|\?|'|\(|\)/g, '').toLowerCase();
        let imgsrc = images(`./`+ imgtitle +`.jpg`);
     return (
-      <Column colMd={4} colLg={4} noGutterMdLeft>
+      <Column colMd={4} colLg={6} colXl={4} noGutterMdLeft>
         <ArticleCard
           title={article.title}
           author={article.author}

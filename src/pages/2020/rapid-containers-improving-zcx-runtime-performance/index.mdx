@@ -2,7 +2,7 @@
 title: Rapid Containers - Improving zCX Runtime Performance
 description: To improve zCX performance, IBM made multiple enhancements both to the virtualization and networking code that manages the Linux guest.
 author: Anthony Giorgio, Nick Matsakis
-date: 2020-09-28
+date: 2020-09-28T00:00:00.000+06:00
 readTime: 5 minutes
 ---
 
@@ -82,19 +82,13 @@ The IEASYSxx 1M LFAREA value defines the maximum number of 1M fixed pages that c
 requires an IPL, so consider increasing the 1M value on your next planned IPL. Note that the 1M setting is only a maximum value. 
 Be aware that more 1M fixed usage may appear by address spaces that were previously forced to use 4K fixed pages.
 
-Preferred storage is used to back storage from non-swappable address spaces and for long-term page fixes (as defined by the page fixer). 
-zCX falls into both of those categories. By definition, fixed storage cannot be taken away by either paging or backing it with another available frame. 
-This is because it may be referenced directly by I/O processing that is not coordinated with z/OS Real Storage Manager (RSM). 
-Using non-preferred storage, also known as reconfigurable storage, for such cases would not make sense as that storage must be 
-able to be reconfigured offline. This could be done for various purposes, such as dynamically moving the storage to another LPAR. 
-As memory has become cheaper and LPAR memory sizes have dramatically increased, the need to move memory around on production LPARs 
-is uncommon. Most customers do not need to have much (or any) non-preferred storage defined.
+Preferred storage is used to back storage from non-swappable address spaces and for long-term page fixes (as defined by the page fixer). zCX falls into both of those categories. By definition, fixed storage cannot be taken away by either paging or backing it with another available frame. This is because it may be referenced directly by I/O processing that is not coordinated with z/OS Real Storage Manager (RSM). Using non-preferred storage, also known as reconfigurable storage, for such cases would not make sense as that storage must be able to be reconfigured offline. This could be done for various purposes, such as dynamically moving the storage to another LPAR. As memory has become cheaper and LPAR memory sizes have dramatically increased, the need to move memory around on production LPARs is uncommon. Most customers do not need to have much (or any) non-preferred storage defined.
 
 The DISPLAY M=STOR command can be used to display the reconfigurable and non-reconfigurable (preferred storage) values for the system. 
 The F AXR,IAXDMEM command can be used to display the LFAREA defined total sizes, the in-use allocation, and max in-use allocation for 1M 
 fixed and 2G pages (see Figure 1).
 
-[Figure 1. z/OS Real Memory Pools ](images/image1.png "Figure 1. z/OS Real Memory Pools ")
+![Figure 1. z/OS Real Memory Pools ](images/image1.png "Figure 1. z/OS Real Memory Pools ")
 
 ## Choosing a zCX Page Size
 

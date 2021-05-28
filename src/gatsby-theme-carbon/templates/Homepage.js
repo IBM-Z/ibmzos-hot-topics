@@ -26,7 +26,7 @@ const SecondRightText = () => (
     Find all the technical resources in one place.
     <a
       className={calloutLink}
-      href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/main/packages/example/src/gatsby-theme-carbon/templates/Homepage.js">
+      href="https://www.ibm.com/support/z-content-solutions/">
       Learn more →
     </a>
   </p>
