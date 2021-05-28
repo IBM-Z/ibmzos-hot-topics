@@ -4,6 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
+    siteUrl: "https://zoshottopics.gtsb.io/",
     title: "z/OS Hot Topics",
     description:
       "Hot Topics content connects you with System z technical leaders and experts who design, code, test, document, teach, and support z/OS and its products.",
@@ -33,6 +34,62 @@ module.exports = {
           interior: "g10",
         },
       },
+    },
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+      {
+        site {
+          siteMetadata {
+            title
+            description
+            siteUrl
+            site_url: siteUrl
+          }
+        }
+      }
+    `,
+    feeds: [
+      {
+        serialize: ({ query: { site, allMdx } }) => {
+          return allMdx.edges.map(edge => {
+            return Object.assign({}, edge.node.frontmatter, {
+              description: edge.node.frontmatter.description,
+              date: edge.node.frontmatter.date,
+              url: site.siteMetadata.siteUrl + "" + edge.node.slug,
+              guid: site.siteMetadata.siteUrl + "" + edge.node.slug,
+            });
+          });
+        },
+        query: `
+          {
+            allMdx(
+              sort: { order: DESC, fields: [frontmatter___date] },
+            ) {
+              edges {
+                node {
+                  slug
+                  frontmatter {
+                    title
+                    date
+                    description
+                    author
+                  }
+                }
+              }
+            }
+          }
+        `,
+        output: "/rss.xml",
+        title: "Hot Topics RSS Feed",
+        // optional configuration to insert feed reference in pages:
+        // if `string` is used, it will be used to create RegExp and then test if pathname of
+        // current page satisfied this regular expression;
+        // if not provided or `undefined`, all pages will have feed reference inserted
+      }
+    ]
+      }
     },
   ],
 };
