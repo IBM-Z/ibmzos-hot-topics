@@ -19,5 +19,8 @@
     "gatsby-theme-carbon": "^1.27.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.11.0"
   }
 }

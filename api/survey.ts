@@ -1,4 +1,4 @@
-import { NowRequest, NowResponse } from '@now/node';
+import { VercelRequest, VercelResponse } from '@vercel/node'
 //import fetch, { FetchError } from 'node-fetch';
 
 import { WebClient } from '@slack/web-api';
@@ -6,11 +6,12 @@ import { WebClient } from '@slack/web-api';
 require('dotenv').config();
 
 const permittedOrigins = [
-  'https://zoshottopics.gatsbyjs.io/',
+  'https://zoshottopics.gatsbyjs.io',
+  'https://zos-hot-topics.vercel.app',
   'https://w3.ibm.com',
 ];
 
-module.exports = async (req: NowRequest, res: NowResponse) => {
+module.exports = async (req: VercelRequest, res: VercelResponse) => {
   if (req.cookies.survey_recently_submitted) {
     return res.json({ error: 'Survey recently submitted.' });
   }
