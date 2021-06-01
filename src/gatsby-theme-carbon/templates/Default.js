@@ -12,6 +12,7 @@ import PageTabs from "gatsby-theme-carbon/src/components/PageTabs";
 import Main from "gatsby-theme-carbon/src/components/Main";
 import Byline from "../components/Byline";
 import MiniCard from "../components/MiniCard";
+import { Rss16 } from '@carbon/icons-react';
 
 const Default = ({
   pageContext,
@@ -115,7 +116,7 @@ const Default = ({
                   Be the first to hear about new articles and updates.
                 </p>
                 <p>
-                  <a>Subscribe</a>
+                  <a href="/about/#how-to-subscribe">Subscribe to our RSS Feed <Rss16 /></a>
                 </p>
               </Aside>
               <MiniCard
