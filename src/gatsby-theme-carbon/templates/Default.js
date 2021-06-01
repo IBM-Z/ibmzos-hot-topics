@@ -12,6 +12,7 @@ import PageTabs from "gatsby-theme-carbon/src/components/PageTabs";
 import Main from "gatsby-theme-carbon/src/components/Main";
 import Byline from "../components/Byline";
 import MiniCard from "../components/MiniCard";
+import { Rss16 } from '@carbon/icons-react';
 
 const Default = ({
   pageContext,
@@ -85,6 +86,9 @@ const Default = ({
       topNav={true}
       location={location}
     >
+      <div className="printLogo">
+      <img src="/images/hottopics.svg" alt="Hot Topics logo" />
+      </div>
       {!hideBanner && (
         <PageHeader
           title={Title ? <Title /> : title}
@@ -97,8 +101,9 @@ const Default = ({
       {tabs && <PageTabs slug={slug} tabs={tabs} currentTab={currentTab} />}
       <div style={{ maxWidth: "99rem" }}>
         <Main padded>
-          <Row>
+          <Row className="articleContent">
             <Column colMd={8} colLg={8}>
+            <div className="printImage"><img src={imgsrc} alt={title} /></div>
               <Byline author={author} readTime={readTime} date={date} />
               {children}
             </Column>
@@ -111,7 +116,7 @@ const Default = ({
                   Be the first to hear about new articles and updates.
                 </p>
                 <p>
-                  <a>Subscribe</a>
+                  <a href="/about/#how-to-subscribe">Subscribe to our RSS Feed <Rss16 /></a>
                 </p>
               </Aside>
               <MiniCard

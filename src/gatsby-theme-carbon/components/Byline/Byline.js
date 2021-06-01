@@ -5,7 +5,7 @@ import { bylineText, hr } from "./Byline.module.scss";
 import Moment from 'moment';
 
 const Byline = ({ author, date, readTime }) => (
-  <section>
+  <section className="byline">
     <p className={bylineText}>By: {author}</p>
     <p className={bylineText}>Published: {Moment(date).format("MMMM DD, YYYY")}</p>
     <p className={bylineText}>Read time: {readTime}</p>

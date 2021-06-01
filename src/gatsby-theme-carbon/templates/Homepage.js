@@ -13,7 +13,7 @@ const FirstRightText = () => (
     Be the first to hear about new articles and updates.
     <a
       className={calloutLink}
-      href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/main/packages/example/src/gatsby-theme-carbon/templates/Homepage.js">
+      href="/about/#how-to-subscribe">
       Subscribe now →
     </a>
   </p>

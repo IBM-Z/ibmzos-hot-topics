@@ -1,11 +1,12 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
+import { Rss16 } from '@carbon/icons-react';
 
 const Content = ({ buildTime }) => (
   <>
   <p><strong>Follow Hot Topics</strong> to be the first to hear about new articles and updates.</p>
-  <p><a>Subscribe now</a></p>
-  <p>Last updated: {buildTime}</p>
+  <p><a href="/about/#how-to-subscribe">Subscribe to our RSS Feed <Rss16 /></a></p>
+  <p>Last updated on {buildTime}</p>
   </>
 );
 
