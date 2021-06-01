@@ -32,7 +32,7 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   if (!origin || Array.isArray(origin) || !permittedOrigins.includes(origin)) {
     return res.json({
       error: `Request sent from unauthorized origin: ${origin}`,
-    });
+   });
   }
 
   // Prepare data for SurveyGizmo
@@ -82,10 +82,6 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   await slack.chat.postMessage({
     blocks,
     channel: process.env.SLACK_CHANNEL,
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   } as any);
 
   // Set a "recently submitted" cookie that expires after one minute to mitigate spam
