@@ -85,6 +85,9 @@ const Default = ({
       topNav={true}
       location={location}
     >
+      <div className="printLogo">
+      <img src="/images/hottopics.svg" alt="Hot Topics logo" />
+      </div>
       {!hideBanner && (
         <PageHeader
           title={Title ? <Title /> : title}
@@ -97,8 +100,9 @@ const Default = ({
       {tabs && <PageTabs slug={slug} tabs={tabs} currentTab={currentTab} />}
       <div style={{ maxWidth: "99rem" }}>
         <Main padded>
-          <Row>
+          <Row className="articleContent">
             <Column colMd={8} colLg={8}>
+            <div className="printImage"><img src={imgsrc} alt={title} /></div>
               <Byline author={author} readTime={readTime} date={date} />
               {children}
             </Column>
