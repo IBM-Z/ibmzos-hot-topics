@@ -37,13 +37,13 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
 
   // Prepare data for SurveyGizmo
   const { experience, comment, path } = JSON.parse(req.body);
-  //const surveyBody = JSON.stringify({
-    //data: {
-      //'2': { value: experience },
-      //'3': { value: comment },
-      //'4': { value: path },
-    //},
-  //});
+  const surveyBody = JSON.stringify({
+    data: {
+      '2': { value: experience },
+      '3': { value: comment },
+      '4': { value: path },
+    },
+  });
 
   //await fetch(process.env.SURVEYGIZMO_REQUEST_URI, {
     //method: 'PUT',
@@ -82,6 +82,10 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   await slack.chat.postMessage({
     blocks,
     channel: process.env.SLACK_CHANNEL,
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   } as any);
 
   // Set a "recently submitted" cookie that expires after one minute to mitigate spam
