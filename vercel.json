@@ -1,0 +1,10 @@
+{
+    "alias": "zoshottopics",
+    "public": true,
+    "routes": [
+      {
+        "src": "/api/survey.ts",
+        "methods": ["POST"]
+      }
+    ]
+  }
