@@ -28,12 +28,12 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   const slack = new WebClient(process.env.SLACK_TOKEN);
 
   // Only allow requests from specified urls
-  //const { origin } = req.headers;
-  //if (!origin || Array.isArray(origin) || !permittedOrigins.includes(origin)) {
-    //return res.json({
-      //error: `Request sent from unauthorized origin: ${origin}`,
-   // });
-  //}
+  const { origin } = req.headers;
+  if (!origin || Array.isArray(origin) || !permittedOrigins.includes(origin)) {
+    return res.json({
+      error: `Request sent from unauthorized origin: ${origin}`,
+   });
+  }
 
   // Prepare data for SurveyGizmo
   const { experience, comment, path } = JSON.parse(req.body);
