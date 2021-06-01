@@ -37,13 +37,13 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
 
   // Prepare data for SurveyGizmo
   const { experience, comment, path } = JSON.parse(req.body);
-  const surveyBody = JSON.stringify({
-    data: {
-      '2': { value: experience },
-      '3': { value: comment },
-      '4': { value: path },
-    },
-  });
+  //const surveyBody = JSON.stringify({
+    //data: {
+      //'2': { value: experience },
+      //'3': { value: comment },
+      //'4': { value: path },
+    //},
+  //});
 
   //await fetch(process.env.SURVEYGIZMO_REQUEST_URI, {
     //method: 'PUT',
