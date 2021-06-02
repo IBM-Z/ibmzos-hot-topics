@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://zos-hot-topics.vercel.app/",
+    siteUrl: "https://ibm-z-hot-topics.com/",
     title: "z/OS Hot Topics",
     description:
       "Hot Topics content connects you with System z technical leaders and experts who design, code, test, document, teach, and support z/OS and its products.",
