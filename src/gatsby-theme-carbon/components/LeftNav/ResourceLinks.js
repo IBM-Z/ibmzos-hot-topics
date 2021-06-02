@@ -14,6 +14,10 @@ const links = [
     title: 'IBM Documentation',
     href: 'https://www.ibm.com/docs/en',
   },
+  {
+    title: 'IBM Z Community Blogs',
+    href: 'https://www.ibm.com/community/z/blog/',
+  },
 ];
 
 // shouldOpenNewTabs: true if outbound links should open in a new tab
