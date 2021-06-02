@@ -10,11 +10,11 @@ const FirstLeftText = () => <p>Follow Hot Topics</p>;
 
 const FirstRightText = () => (
   <p>
-    Be the first to hear about new articles and updates.
+   Be the first to hear from the people who know.
     <a
       className={calloutLink}
       href="/about/#how-to-subscribe">
-      Subscribe now →
+      Subscribe to our RSS feed now →
     </a>
   </p>
 );
