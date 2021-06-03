@@ -7,7 +7,7 @@ import Moment from 'moment';
 const Byline = ({ author, date, readTime }) => (
   <section className="byline">
     <p className={bylineText}>By: {author}</p>
-    <p className={bylineText}>Published: {Moment(date).format("MMMM DD, YYYY")}</p>
+    <p className={bylineText}>Published: {Moment.utc(date).format("MMMM Do, YYYY")}</p>
     <p className={bylineText}>Read time: {readTime}</p>
     <hr />
   </section>
