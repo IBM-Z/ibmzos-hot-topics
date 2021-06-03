@@ -32,7 +32,7 @@ const SecondRightText = () => (
   </p>
 );
 
-const BannerText = () => <h1>z/OS Hot Topics</h1>;
+const BannerText = () => <h1>IBM Z Hot Topics</h1>;
 
 const customProps = {
   Banner: <HomepageBanner renderText={BannerText} image={Homepage} />,
