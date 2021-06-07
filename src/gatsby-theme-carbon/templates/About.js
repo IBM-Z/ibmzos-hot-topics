@@ -28,14 +28,13 @@ const About = ({
   if (!pageContext) {
     return <React.Fragment>{children}</React.Fragment>;
   }
-  const { frontmatter = {}, relativePagePath, titleType } = pageContext;
+  const { frontmatter = {}, titleType } = pageContext;
   const {
     tabs,
     title,
     theme,
     description,
     keywords,
-    nav,
   } = frontmatter;
 
   if (frontmatter.redirect) {

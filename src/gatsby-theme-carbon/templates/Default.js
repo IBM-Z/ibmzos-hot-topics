@@ -6,13 +6,13 @@ import Utils from "gatsby-theme-carbon/src/components/Utils";
 import Layout from "./../components/Layout";
 import Aside from "gatsby-theme-carbon/src/components/Aside";
 import PageHeader from "../components/PageHeader";
-import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
+import { Row, Column } from "gatsby-theme-carbon";
 import NextPrevious from "../components/NextPrevious";
 import PageTabs from "gatsby-theme-carbon/src/components/PageTabs";
 import Main from "gatsby-theme-carbon/src/components/Main";
-import Byline from "../components/Byline";
 import MiniCard from "../components/MiniCard";
-import { Rss16 } from '@carbon/icons-react';
+import Byline from "../components/Byline";
+import { Rss16, GeneratePdf20 } from '@carbon/icons-react';
 
 const Default = ({
   pageContext,
@@ -121,10 +121,10 @@ const Default = ({
               </Aside>
               <MiniCard
                   title="Download this article"
-                  actionIcon="pdf"
                   href="javascript:window.print()"
                   className="download-article"
                 >
+                  <GeneratePdf20 />
                 </MiniCard>
             </Column>
           </Row>
