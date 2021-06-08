@@ -1,0 +1,7 @@
+applications:
+- instances: 2
+  name: zos-hot-topics
+  buildpack: nodejs_buildpack
+  command: npm run dev
+  memory: 2GB
+  
