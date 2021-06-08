@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const permittedOrigins = [
   'https://zoshottopics.gatsbyjs.io',
+  'https://zos-hot-topics.mybluemix.net',
   'https://zos-hot-topics.vercel.app',
   'https://w3.ibm.com',
 ];
