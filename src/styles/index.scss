@@ -1,4 +1,3 @@
-// This is where your application styles could go.
 @import "~carbon-components/scss/globals/scss/layout";
 
 @media (min-width: 82rem) {
@@ -28,6 +27,13 @@
 [class*="Markdown-module--list"] {
   width: 100%;
 }
+//Add text-shadow to banner headline
+[class*="Banner"] {
+  h1 {
+    text-shadow: 1px 1px 16px black;
+  }
+}
+
 //Aside module in Default template
 [class*="Aside-module"] {
   img {
@@ -175,3 +181,5 @@
     }
   }
 }
+
+
