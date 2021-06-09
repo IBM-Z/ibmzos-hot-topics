@@ -1,7 +1,7 @@
 import React from "react";
 import slugify from "slugify";
 import { useStaticQuery, graphql } from "gatsby";
-
+import Moment from 'moment';
 import Utils from "gatsby-theme-carbon/src/components/Utils";
 import Layout from "./../components/Layout";
 import Aside from "gatsby-theme-carbon/src/components/Aside";
@@ -104,7 +104,7 @@ const Default = ({
           <Row className="articleContent">
             <Column colMd={8} colLg={8}>
             <div className="printImage"><img src={imgsrc} alt={title} /></div>
-              <Byline author={author} readTime={readTime} date={date} />
+              <Byline author={author} readTime={readTime} date={Moment.utc(date)} />
               {children}
             </Column>
             <Column colMd={2} colLg={3} offsetMd={1} offsetLg={1}>
