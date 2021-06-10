@@ -44,6 +44,12 @@
     margin-bottom: $spacing-04;
   }
 }
+
+.articleContent {
+  padding-bottom:$layout-05;
+}
+
+
 //Increase right padding and prevent three-line titles in NextPrevious modules
 [class*="NextPrevious-module--link"] {
   a {
