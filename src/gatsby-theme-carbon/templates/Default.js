@@ -10,8 +10,8 @@ import { Row, Column } from "gatsby-theme-carbon";
 import NextPrevious from "../components/NextPrevious";
 import PageTabs from "gatsby-theme-carbon/src/components/PageTabs";
 import Main from "gatsby-theme-carbon/src/components/Main";
-import { MiniCard } from "gatsby-theme-carbon/src/components/MiniCard";
 import Byline from "../components/Byline";
+import { MiniCard } from "gatsby-theme-carbon/src/components/MiniCard";
 import { Rss16, GeneratePdf20 } from "@carbon/icons-react";
 
 const Default = ({
