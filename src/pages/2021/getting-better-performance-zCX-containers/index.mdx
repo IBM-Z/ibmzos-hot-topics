@@ -10,7 +10,7 @@ Most of you are probably already familiar with the power of container technology
 containers allows for better application isolation, improved developer productivity by simplifying the 
 configuration and startup of test environments, and better code quality because the container environment 
 that is used for testing the application will be the same environment used for production. This technology 
-is now available on z/OS with Containers Extensions, or zCX.   
+is now available on z/OS with Containers Extensions, or zCX.
 
 In a prior Hot Topics article, [Rapid Containers: Improving zCX Runtime Performance](/2020/rapid-containers-improving-zcx-runtime-performance/), 
 you learned how the hardware page frame size used can impact the performance of your zCX runtime. 
@@ -20,7 +20,7 @@ In this article, you will learn how to optimize the network communication to and
 
 Let’s first examine how zCX leverages the existing z/OS TCP/IP networking stack. Because zCX takes 
 advantage of the virtio Linux interfaces, the Linux network that is used by zCX can be virtualized 
-such that it can access the existing network interfaces managed and provided by z/OS.  
+such that it can access the existing network interfaces managed and provided by z/OS.
 
 ![Figure 1](images/image1.png "Figure 1")
 
@@ -43,7 +43,7 @@ route is over the network interface with IP address 10.0.1.1.
 
 When considering whether to take advantage of the Linux Docker container environment provided by 
 zCX for your application tier, you should aim to keep the container colocated with the z/OS database 
-management system (DBMS), if possible. 
+management system (DBMS), if possible.
 
 ![Figure 2](images/image1.png "Figure 2")
 
