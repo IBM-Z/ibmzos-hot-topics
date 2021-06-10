@@ -1,18 +1,18 @@
 import React from "react";
 import slugify from "slugify";
 import { useStaticQuery, graphql } from "gatsby";
-
+import Moment from "moment";
 import Utils from "gatsby-theme-carbon/src/components/Utils";
 import Layout from "./../components/Layout";
 import Aside from "gatsby-theme-carbon/src/components/Aside";
 import PageHeader from "../components/PageHeader";
-import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
+import { Row, Column } from "gatsby-theme-carbon";
 import NextPrevious from "../components/NextPrevious";
 import PageTabs from "gatsby-theme-carbon/src/components/PageTabs";
 import Main from "gatsby-theme-carbon/src/components/Main";
+import { MiniCard } from "gatsby-theme-carbon/src/components/MiniCard";
 import Byline from "../components/Byline";
-import MiniCard from "../components/MiniCard";
-import { Rss16 } from '@carbon/icons-react';
+import { Rss16, GeneratePdf20 } from "@carbon/icons-react";
 
 const Default = ({
   pageContext,
@@ -69,9 +69,12 @@ const Default = ({
 
   const currentTab = getCurrentTab();
 
-  const images = require.context('../../images', true);
-  let imgtitle = title.replace(/\s+/g, '-').replace(/\/|\?|'|\(|\)/g, '').toLowerCase();
-  let imgsrc = images(`./`+ imgtitle +`.jpg`);
+  const images = require.context("../../images", true);
+  let imgtitle = title
+    .replace(/\s+/g, "-")
+    .replace(/\/|\?|'|\(|\)/g, "")
+    .toLowerCase();
+  let imgsrc = images(`./` + imgtitle + `.jpg`);
 
   return (
     <Layout
@@ -87,7 +90,7 @@ const Default = ({
       location={location}
     >
       <div className="printLogo">
-      <img src="/images/hottopics.svg" alt="Hot Topics logo" />
+        <img src="/images/hottopics.svg" alt="Hot Topics logo" />
       </div>
       {!hideBanner && (
         <PageHeader
@@ -101,13 +104,20 @@ const Default = ({
       {tabs && <PageTabs slug={slug} tabs={tabs} currentTab={currentTab} />}
       <div style={{ maxWidth: "99rem" }}>
         <Main padded>
-          <Row className="articleContent">
-            <Column colMd={8} colLg={8}>
-            <div className="printImage"><img src={imgsrc} alt={title} /></div>
-              <Byline author={author} readTime={readTime} date={date} />
+          <Row>
+            <Column colMd={8} colLg={8} className="articleContent">
+              <div className="printImage">
+                <img src={imgsrc} alt={title} />
+              </div>
+              <Byline
+                author={author}
+                readTime={readTime}
+                date={Moment.utc(date)}
+              />
               {children}
             </Column>
-            <Column colMd={2} colLg={3} offsetMd={1} offsetLg={1}>
+            <Column colMd={2} colLg={3} offsetLg={1} className="articleAside">
+              <Row>
               <Aside aria-label="subscribe">
                 <img src="/images/hottopics.svg" alt="Hot Topics logo" />
                 <p>
@@ -116,26 +126,26 @@ const Default = ({
                   Be the first to hear about new articles and updates.
                 </p>
                 <p>
-                  <a href="/about/#how-to-subscribe">Subscribe to our RSS Feed <Rss16 /></a>
+                  <a href="/about/#how-to-subscribe">
+                    Subscribe to our RSS Feed <Rss16 />
+                  </a>
                 </p>
               </Aside>
+              </Row>
+              <Row>
               <MiniCard
-                  title="Download this article"
-                  actionIcon="pdf"
-                  href="javascript:window.print()"
-                  className="download-article"
-                >
-                </MiniCard>
+                title="Download this article"
+                href="javascript:window.print()"
+                className="download-article"
+              >
+                <GeneratePdf20 />
+              </MiniCard>
+              </Row>
             </Column>
           </Row>
-
         </Main>
       </div>
-        <NextPrevious
-          pageContext={pageContext}
-          location={location}
-          slug={slug}
-        />
+      <NextPrevious pageContext={pageContext} location={location} slug={slug} />
       <Utils />
     </Layout>
   );

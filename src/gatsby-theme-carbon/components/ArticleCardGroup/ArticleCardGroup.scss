@@ -40,6 +40,42 @@
           @include carbon--type-style("body-short-02", true);
           margin-bottom: $spacing-07;
         }
+        .bx--article-card__info {
+          bottom:$spacing-06;
+          left:$spacing-06;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 42rem) {
+  .featuredArticleCard {
+    .bx--tile {
+      flex-direction: column;
+      .bx--article-card__img {
+        flex-basis: 100%;
+      }
+      .bx--aspect-ratio--2x1 {
+        flex-basis: 100%;
+        .bx--article-card__tile {
+          padding: $spacing-05 $spacing-08 $spacing-05 $spacing-05;
+          .bx--article-card__title {
+            @include carbon--type-style("productive-heading-04", true);
+            margin-bottom: $spacing-08;
+            order: -1;
+          }
+          .bx--article-card__subtitle {
+            @include carbon--type-style("body-short-02", true);
+            margin-bottom: $spacing-07;
+          }
+          .bx--article-card__info {
+            bottom:$spacing-05;
+            left:$spacing-05;
+            p {
+              @include carbon--type-style("body-short-01", true);
+            }
+          }
+        }
       }
     }
   }
