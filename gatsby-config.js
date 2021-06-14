@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "http://zos-hot-topics.com/",
+    siteUrl: "https://zos-hot-topics.com/",
     title: "IBM Z Hot Topics",
     description:
       "Hot Topics content connects you with System z technical leaders and experts who design, code, test, document, teach, and support z/OS and its products.",
@@ -55,17 +55,17 @@ module.exports = {
         serialize: ({ query: { site, allMdx } }) => {
           return allMdx.edges.map(edge => {
             return Object.assign({}, edge.node.frontmatter, {
-              description: edge.node.frontmatter.description,
+              description: edge.node.excerpt,
               date: edge.node.frontmatter.date,
-              url: site.siteMetadata.siteUrl + "" + edge.node.slug,
-              guid: site.siteMetadata.siteUrl + "" + edge.node.slug,
+              url: site.siteMetadata.siteUrl + "/" + edge.node.slug,
+              guid: site.siteMetadata.siteUrl + "/" + edge.node.slug,
             });
           });
         },
         query: `
           {
             allMdx(
-              sort: { order: DESC, fields: [frontmatter___date] },
+              sort: {fields: [frontmatter___date], order: DESC}, filter: {slug: {regex: "/(20)/"}},
             ) {
               edges {
                 node {
@@ -76,6 +76,7 @@ module.exports = {
                     description
                     author
                   }
+                  excerpt(pruneLength: 500)
                 }
               }
             }
@@ -87,6 +88,7 @@ module.exports = {
         // if `string` is used, it will be used to create RegExp and then test if pathname of
         // current page satisfied this regular expression;
         // if not provided or `undefined`, all pages will have feed reference inserted
+        match: "^/(20)/"
       }
     ]
       }
