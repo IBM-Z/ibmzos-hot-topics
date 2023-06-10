@@ -14,7 +14,7 @@
   "dependencies": {
     "@now/node": "^1.8.5",
     "@slack/web-api": "^6.2.3",
-    "gatsby": "^2.24.14",
+    "gatsby": "^4.25.7",
     "gatsby-plugin-feed": "^2.0.5",
     "gatsby-theme-carbon": "^1.29.2",
     "react": "^16.8.6",
